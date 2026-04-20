@@ -183,3 +183,45 @@ html {
 
     background-attachment: fixed;
 }
+
+/* Calendly inline widget adjustments */
+.calendly-widget-wrapper,
+.calendly-widget-wrapper iframe,
+.calendly-widget-wrapper .calendly-inline-widget {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+.calendly-widget-wrapper,
+.calendly-widget-wrapper iframe {
+  min-height: 0 !important;
+}
+
+.calendly-widget-wrapper {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+
+.calendly-widget-wrapper .calendly-title,
+.calendly-widget-wrapper .calendly-header,
+.calendly-widget-wrapper .calendly-subtitle {
+  font-size: 14px !important;
+}
+
+.calendly-widget-wrapper a[href="privacy"],
+.calendly-widget-wrapper a[href="privacidad"],
+.calendly-widget-wrapper a[href="cookie"],
+.calendly-widget-wrapper .calendly-footer,
+.calendly-widget-wrapper .calendly-legal,
+.calendly-widget-wrapper .calendly-badge-widget,
+.calendly-widget-wrapper .calendly-cookie-banner,
+.calendly-widget-wrapper .calendly-policy,
+.calendly-widget-wrapper [class="footer"],
+.calendly-widget-wrapper [class="legal"],
+.calendly-widget-wrapper [class="cookie"],
+.calendly-widget-wrapper [class*="privacy"] {
+  display: none !important;
+}
