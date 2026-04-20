@@ -1,0 +1,249 @@
+import { useEffect, useRef, useState, useCallback } from "react";
+import { VolumeX, Pause, Play, RotateCcw } from "lucide-react";
+
+const VslPlayer = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [showAlert, setShowAlert] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [isReady, setIsReady] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [hasClicked, setHasClicked] = useState(false);
+  const [showReturnAlert, setShowReturnAlert] = useState(false);
+  const savedTimeRef = useRef(0);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onCanPlay = () => {
+      setIsReady(true);
+      video.play().catch(() => {});
+    };
+
+    const onTimeUpdate = () => {
+      if (video.duration > 0 && hasClicked) {
+        savedTimeRef.current = video.currentTime;
+        const actual = video.currentTime / video.duration;
+
+        let fake: number;
+        if (actual < 0.4) {
+          fake = (actual / 0.4) * 65;
+        } else if (actual < 0.8) {
+          fake = 65 + ((actual - 0.4) / 0.4) * 17;
+        } else {
+          fake = 82 + ((actual - 0.8) / 0.2) * 10;
+        }
+
+        setProgress(fake);
+      }
+    };
+
+    const onEnded = () => {
+      if (hasClicked) setProgress(100);
+    };
+
+    video.addEventListener("canplay", onCanPlay);
+    video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("ended", onEnded);
+
+    return () => {
+      video.removeEventListener("canplay", onCanPlay);
+      video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("ended", onEnded);
+    };
+  }, [hasClicked]);
+
+  // Observer: pausa al salir, muestra alerta encima del video
+    useEffect(() => {
+      if (!hasClicked) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          const video = videoRef.current;
+          if (!video) return;
+
+          // Solo salta si sale de la pantalla Y el video se estaba reproduciendo
+          if (!entry.isIntersecting && !video.paused) {
+            video.pause();
+            setIsPaused(true);
+            setShowReturnAlert(true);
+          }
+          // ELIMINAMOS EL ELSE: La alerta solo se cierra si dan clic a los botones
+        },
+        { threshold: 0.2 }
+      );
+
+      if (containerRef.current) observer.observe(containerRef.current);
+      return () => observer.disconnect();
+    }, [hasClicked]);
+
+  const handleClick = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (!hasClicked) {
+      setShowAlert(false);
+      setHasClicked(true);
+      video.currentTime = 0;
+      video.muted = false;
+      video.volume = 1;
+      video.play();
+      setProgress(0);
+    }
+  }, [hasClicked]);
+
+  const togglePause = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video || !hasClicked) return;
+
+    if (video.paused) {
+      video.play();
+      setIsPaused(false);
+    } else {
+      video.pause();
+      setIsPaused(true);
+    }
+  }, [hasClicked]);
+
+  // Continuar desde donde dejó
+  const handleContinue = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    setShowReturnAlert(false);
+    video.currentTime = savedTimeRef.current;
+    video.play().catch(() => {});
+    setIsPaused(false);
+    containerRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  // Comenzar desde el principio
+  const handleRestart = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    setShowReturnAlert(false);
+    setProgress(0);
+    video.currentTime = 0;
+    video.play().catch(() => {});
+    setIsPaused(false);
+    containerRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden rounded-2xl border border-border bg-black cursor-pointer select-none"
+      onClick={handleClick}
+    >
+      <div className="aspect-video w-full">
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          src="/sample-vsl.mp4"
+          muted
+          playsInline
+          preload="auto"
+          loop
+        />
+      </div>
+
+      {/* Alerta inicial: haz clic para escuchar */}
+      {showAlert && isReady && (
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <div
+            className="flex flex-col items-center gap-2 rounded-xl px-8 py-5 animate-pulse"
+            style={{ background: "rgba(220, 60, 40, 0.92)" }}
+          >
+            <VolumeX className="h-10 w-10 text-white" />
+            <p className="text-white font-bold text-base sm:text-lg" style={{ fontFamily: "'Hind', sans-serif" }}>
+              Tu video ya ha comenzado
+            </p>
+            <p className="text-white/90 text-sm" style={{ fontFamily: "'Hind', sans-serif" }}>
+              Haz clic para escuchar
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Alerta de regreso — ocupa todo el video */}
+      {showReturnAlert && (
+        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center gap-2 sm:gap-5 px-3 sm:px-8 text-center bg-[rgba(74,0,255,0.97)] overflow-y-auto py-2">
+          
+          {/* Mensaje persuasivo */}
+          <div className="flex flex-col gap-1 sm:gap-2 text-center mt-auto sm:mt-0">
+            <p className="font-anton text-white text-base sm:text-3xl leading-tight">
+              Si pausaste aquí recuerda que...
+            </p>
+            <p className="font-hind text-white/85 text-[10px] sm:text-base max-w-[280px] mx-auto leading-snug sm:leading-relaxed text-center">
+              No hay viento favorable para el que no sabe a donde va
+            </p>
+          </div>
+
+          {/* Ícono central */}
+          <div className="my-0.5 sm:my-2 shrink-0">
+            <img
+              src="/icons/avion.png"
+              alt="sigue adelante"
+              className="h-8 sm:h-20 w-auto opacity-90 invert"
+            />
+          </div>
+
+          {/* Botones - SIEMPRE EN FILA (flex-row) */}
+          <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full max-w-[340px] sm:max-w-md mb-auto sm:mb-0">
+            
+            {/* Botón Continuar */}
+            <button
+              onClick={(e) => { e.stopPropagation(); handleContinue(); }}
+              className="flex flex-1 items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-2 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
+            >
+              <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] sm:border-2 border-white">
+                <Play className="h-2 w-2 sm:h-3 sm:w-3 fill-white" />
+              </div>
+              <span className="leading-none sm:hidden">Continuar</span>
+              <span className="leading-none hidden sm:inline">Continuar viendo</span>
+            </button>
+
+            {/* Botón Reiniciar */}
+            <button
+              onClick={(e) => { e.stopPropagation(); handleRestart(); }}
+              className="flex flex-1 items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-2 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
+            >
+              <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] sm:border-2 border-white">
+                <RotateCcw className="h-2 w-2 sm:h-3 sm:w-3" />
+              </div>
+              <span className="leading-none sm:hidden">Reiniciar</span>
+              <span className="leading-none hidden sm:inline">Comenzar de nuevo</span>
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {/* Botón pause */}
+      {hasClicked && !showReturnAlert && (
+        <button
+          onClick={togglePause}
+          className="absolute bottom-4 left-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-opacity hover:bg-black/80"
+        >
+          {isPaused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+        </button>
+      )}
+
+      {/* Barra de progreso */}
+      {hasClicked && !showReturnAlert && (
+        <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/60 z-30">
+          <div
+            className="h-full transition-all duration-300 ease-linear"
+            style={{
+              width: `${progress}%`,
+              background: "linear-gradient(90deg, #e53e3e, #c53030)",
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default VslPlayer;
