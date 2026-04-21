@@ -1,0 +1,9 @@
+* text=auto
+*.js eol=lf
+*.ts eol=lf
+*.tsx eol=lf
+*.jsx eol=lf
+*.json eol=lf
+.gitattributes export-ignore
+.gitignore export-ignore
+node_modules/** -linguist-generated
