@@ -3,7 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 interface FaqItem {
   q: string;
-  a: string;
+  a: string | React.ReactNode;
 }
 
 const FaqAccordion = ({ faqs }: { faqs: FaqItem[] }) => {

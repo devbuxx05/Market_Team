@@ -184,6 +184,30 @@ html {
     background-attachment: fixed;
 }
 
+@media (max-width: 768px) {
+  .bg-repeating-glow {
+    background-image: 
+      radial-gradient(
+        400px circle at 2% 20%, 
+        rgba(124, 58, 255, 0.35) 5%, 
+        rgba(124, 58, 255, 0.15) 30%, 
+        transparent 60%
+      ),
+      radial-gradient(
+        400px circle at 98% 20%, 
+        rgba(124, 58, 255, 0.35) 5%,
+        rgba(124, 58, 255, 0.15) 30%, 
+        transparent 60%
+      ),
+      radial-gradient(
+        500px circle at 50% 105%, 
+        rgba(124, 58, 255, 0.35) 5%,
+        rgba(124, 58, 255, 0.15) 30%, 
+        transparent 60%
+      );
+  }
+}
+
 /* Calendly inline widget adjustments */
 .calendly-widget-wrapper,
 .calendly-widget-wrapper iframe,

@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Play, ImageIcon, X, Check  } from "lucide-react";
+import React, { useState } from "react";
+import { Play } from "lucide-react";
 import VslPlayer from "@/components/VslPlayer";
 import QualificationModal from "@/components/QualificationModal";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/ScrollReveal";
 import FaqAccordion from "@/components/FaqAccordion";
 import ScrollToTop from "@/components/ScrollToTop";
-import CalendlyWidget from "@/components/CalendlyWidget";
 
 const clientes = [
   {
@@ -47,37 +46,40 @@ const Index = () => {
         <Navbar onCtaClick={() => setModalOpen(true)} />
 
         {/* Hero */}
-        <section className="flex min-h-screen flex-col items-center justify-center px-4 pt-20 text-center">
+        <section className="flex min-h-screen flex-col items-center justify-center px-4 pt-16 sm:pt-20 text-center">
           <ScrollReveal>
-            <div className="mx-auto max-w-3xl space-y-4">
-              <h1 className="sm:mt-6 text-2xl sm:text-3xl md:text-4xl ">
+            <div className="mx-auto max-w-3xl space-y-4 sm:space-y-4">
+              
+              <h1 className="text-2xl sm:text-3xl md:text-4xl leading-snug sm:leading-normal">
                 No necesitas hacer más videitos...{" "}
                 <span>
                   Necesitas entender por qué no estás consiguiendo clientes
                 </span>
               </h1>
-              <p className="mx-auto max-w-2xl font-bold text-sm sm:text-lg text-muted-foreground leading-tight">
-                <span className="block">
+
+              <p className="mx-auto max-w-2xl font-bold text-sm sm:text-lg text-muted-foreground leading-snug sm:leading-none">
+                <span className="block -mb-0 sm:-mb-1">
                   Implementamos un sistema de adquisición que te lleva a
                 </span>
-                <span className="block text-foreground text-base sm:text-xl">
+                <span className="block text-foreground text-base sm:text-xl -mb-0 sm:-mb-1">
                   facturar entre 20K – 50K en 5 meses
                 </span>
                 <span className="block">
                   (o trabajamos gratis hasta lograrlo)
                 </span>
               </p>
+
             </div>
           </ScrollReveal>
 
           {/* Video */}
-          <ScrollReveal delay={200} className="mt-5 w-full max-w-2xl">
+          <ScrollReveal delay={200} className="mt-10 sm:mt-5 w-full max-w-2xl">
             <VslPlayer />
           </ScrollReveal>
 
           {/* CTA below video */}
-          <ScrollReveal delay={400} className="mt-5 w-full flex flex-col items-center">
-            <div className="cta-section-gradient py-2 px-8 rounded-xl max-w-xl w-full text-center shadow-lg">
+          <ScrollReveal delay={400} className="mt-10 sm:mt-5 w-full flex flex-col items-center">
+            <div className="cta-section-gradient py-3 sm:py-2 px-6 sm:px-8 rounded-xl max-w-xl w-full text-center shadow-lg">
               <p className="text-sm sm:text-base text-foreground leading-relaxed">
                 Si eres <span className="font-bold">Abogado</span> o tienes un{" "}
                 <span className="font-bold">Estudio Jurídico</span> y quieres{" "}
@@ -85,16 +87,18 @@ const Index = () => {
                 agenda tu consultoría gratuita.
               </p>
             </div>
+
             <button
               onClick={() => setModalOpen(true)}
-              className="btn-pulse mt-8 rounded-full px-8 py-4 text-sm uppercase tracking-wider text-white border border-white/20 transition-all duration-300"
+              className="btn-pulse mt-10 sm:mt-8 rounded-full px-8 py-4 text-sm uppercase tracking-wider text-white border border-white/20 transition-all duration-300"
               style={{ 
                 fontFamily: "'Hind', sans-serif",
                 background: "linear-gradient(135deg, #4a00ff 0%, #7c3aff 50%, #a855f7 100%)"
               }}
             >
-              Consultoría <span className="hidden sm:inline font-extrabold">Gratis</span>
+              Consultoría <span className=" font-extrabold">Gratis</span>
             </button>
+
           </ScrollReveal>
         </section>
 
@@ -139,8 +143,8 @@ const Index = () => {
 
               {/* Tarjeta 1: Agencias Estiércol */}
               <ScrollReveal delay={0} direction="left">
-                <div className="flex flex-col gap-3 mx-auto w-full max-w-sm">
-                  <h3 className="text-2xl md:text-4xl text-center tracking-tight text-white">
+                <div className="flex flex-col gap-3 mx-auto w-full max-w-[300px] md:max-w-sm">
+                  <h3 className="text-3xl md:text-4xl text-center tracking-tight text-white">
                     Agencias Estiércol
                   </h3>
                   {/* Reduje a p-4 en móvil para que quede más ajustado */}
@@ -153,7 +157,7 @@ const Index = () => {
                       />
                     </div>
                     {/* CAMBIO AQUÍ: text-xs en lugar de text-sm */}
-                    <ul className="space-y-2 md:space-y-3 text-xs md:text-xl text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
+                    <ul className="space-y-2 md:space-y-3 text-base md:text-xl text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
                       {[
                         "Publican contenido sin generar ventas",
                         "Se enfocan en likes y alcance",
@@ -174,8 +178,8 @@ const Index = () => {
 
               {/* Tarjeta 2: Market Team Agency */}
               <ScrollReveal delay={200} direction="right">
-                <div className="flex flex-col gap-3 mx-auto w-full max-w-md">
-                  <h3 className="text-2xl md:text-4xl text-center tracking-tight text-white">
+                <div className="flex flex-col gap-3 mx-auto w-full max-w-[300px] md:max-w-sm">
+                  <h3 className="text-3xl md:text-4xl text-center tracking-tight text-white">
                     Market Team Agency
                   </h3>
                   {/* Reduje a p-4 en móvil para que quede más ajustado */}
@@ -191,7 +195,7 @@ const Index = () => {
                       />
                     </div>
                     {/* CAMBIO AQUÍ: text-xs en lugar de text-sm */}
-                    <ul className="space-y-2 md:space-y-3 text-xs md:text-xl text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
+                    <ul className="space-y-2 md:space-y-3 text-base md:text-xl text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
                       {[
                         <>Implementamos un sistema que genera <span className="font-bold md:text-2xl">clientes constantes</span></>,
                         "Nos enfocamos en conversión y rentabilidad real",

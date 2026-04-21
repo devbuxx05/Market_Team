@@ -62,7 +62,7 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
     const date = getCalendlyDate();
     calendarRef.current.innerHTML = `
       <iframe
-        src="https://calendly.com/marketteamagency/cristhian?hide_gdpr_banner=1&date=${date}&embed_domain=market-team-agency.com&embed_type=Inline"
+        src="https://calendly.com/marketteamagency/cristhian?hide_gdpr_banner=1&primary_color=4a00ff&background_color=05050b&text_color=ffffff"
         style="width:100%; height:100%; border:0; min-height:0;"
         allowtransparency="true"
       ></iframe>
@@ -98,9 +98,9 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
   };
 
   const dialogClassName =
-    step === "calendar"
-      ? "fixed left-[50%] top-[50%] z-50 w-[96vw] max-w-[1240px] max-h-[96vh] translate-x-[-50%] translate-y-[-50%] rounded-none border-none bg-transparent p-0 shadow-none overflow-hidden"
-      : "w-[90%] sm:w-full sm:max-w-[28rem] rounded-lg border border-white/10 bg-[#111219] p-5 shadow-lg";
+  step === "calendar"
+    ? "fixed left-[50%] top-[50%] z-50 w-[96vw] max-w-[1240px] max-h-[96vh] translate-x-[-50%] translate-y-[-50%] rounded-xl p-0 shadow-none overflow-hidden calendly-dialog-dark"
+    : "w-[90%] sm:w-full sm:max-w-[28rem] rounded-lg border border-white/10 bg-[#111219] p-5 shadow-lg";
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -199,13 +199,26 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
         )}
 
         {step === "calendar" && (
-          <div className="h-[94vh] w-full overflow-auto bg-transparent">
+          <div className="relative h-[94vh] w-full overflow-auto bg-transparent">
+
+            {/* Botón cerrar */}
+            <button
+              onClick={() => handleClose(false)}
+              className="absolute top-3 right-3 z-50 flex h-10 w-10 items-center justify-center rounded-full text-white/70 border border-white/20 bg-black/30 backdrop-blur-sm transition hover:bg-black/50 hover:text-white hover:scale-105"
+            >
+              <svg width="16" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
             <div
               ref={calendarRef}
               className="calendly-widget-wrapper h-full w-full bg-transparent"
             />
           </div>
         )}
+
       </DialogContent>
     </Dialog>
   );

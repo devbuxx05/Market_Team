@@ -48,7 +48,7 @@ const CalendlyWidget = () => {
     <div className="w-full max-w-4xl mx-auto">
       <div
         className="calendly-inline-widget"
-        data-url="https://calendly.com/marketteamagency/cristhian?hide_gdpr_banner=1"
+        data-url="https://calendly.com/marketteamagency/cristhian?hide_gdpr_banner=1&primary_color=4a00ff&background_color=05050b&text_color=ffffff"
         style={{
           minWidth: '320px',
           height: '700px',
