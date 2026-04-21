@@ -11,10 +11,12 @@ const clientes = [
   {
     name: "Nick Name",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
+    videoId: "YmThOnFXM0E",
   },
   {
     name: "Nick Name",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
+    videoId: "-0hWmeWqZWs",
   },
 ];
 
@@ -104,22 +106,29 @@ const Index = () => {
 
         {/* Clientes */}
         <section id="clientes" className="px-4 py-24">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-5xl">
             <ScrollReveal>
               <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide">
                 Clientes
               </h2>
             </ScrollReveal>
-            <div className="space-y-6">
+            <div className="space-y-8">
               {clientes.map((c, i) => (
                 <ScrollReveal key={i} delay={i * 150} direction={i % 2 === 0 ? "left" : "right"}>
-                  <div className="flex flex-col sm:flex-row items-center gap-5 rounded-xl border border-border bg-secondary/30 backdrop-blur-sm p-4 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/50">
-                    <div className="flex-shrink-0 w-full sm:w-56 aspect-[4/3] rounded-lg bg-secondary/80 flex items-center justify-center">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary border border-muted-foreground/30">
-                        <Play className="h-5 w-5 text-muted-foreground" />
-                      </div>
+                  <div className="flex flex-col sm:flex-row items-center gap-8 rounded-xl border-2 border-white-500 bg-secondary/30 backdrop-blur-sm p-8 transition-all duration-300 hover:border-purple-400 hover:bg-secondary/50">
+                    <div className="w-full sm:w-3/5 aspect-[16/9] rounded-lg bg-secondary/80 flex items-center justify-center overflow-hidden">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src={`https://www.youtube.com/embed/${c.videoId}`}
+                        title={c.name}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      />
                     </div>
-                    <div className="flex-1 space-y-2">
+                    <div className="w-full sm:w-2/5 space-y-2">
                       <h3 className="text-base font-extrabold uppercase tracking-wide">{c.name}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: "'Hind', sans-serif" }}>{c.text}</p>
                     </div>
@@ -270,13 +279,13 @@ const Index = () => {
 
                 <button
                   onClick={() => setModalOpen(true)}
-                  className="btn-pulse mt-8 rounded-full px-8 py-4 text-sm uppercase tracking-wider text-white border border-white/20 transition-all duration-300"
+                  className="btn-pulse mt-10 sm:mt-8 rounded-full px-8 py-4 text-sm uppercase tracking-wider text-white border border-white/20 transition-all duration-300"
                   style={{ 
                     fontFamily: "'Hind', sans-serif",
                     background: "linear-gradient(135deg, #4a00ff 0%, #7c3aff 50%, #a855f7 100%)"
                   }}
                 >
-                  Consultoría <span className="hidden sm:inline font-extrabold">Gratis</span>
+                  Consultoría <span className=" font-extrabold">Gratis</span>
                 </button>
               </div>
             </ScrollReveal>
