@@ -1,1 +1,14 @@
 node_modules
+dist
+.env.local
+.env.*.local
+*.pem
+.DS_Store
+.idea
+.vscode
+*.log
+.next
+out
+build
+coverage
+.turbo
