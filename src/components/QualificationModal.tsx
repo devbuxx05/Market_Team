@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Props {
   open: boolean;
@@ -99,11 +100,11 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
   const dialogClassName =
     step === "calendar"
       ? "fixed left-[50%] top-[50%] z-50 w-[96vw] max-w-[1240px] max-h-[96vh] translate-x-[-50%] translate-y-[-50%] rounded-none border-none bg-transparent p-0 shadow-none overflow-hidden"
-      : "w-full sm:max-w-[28rem] rounded-[32px] border border-white/10 bg-[#111219] p-5 shadow-lg";
+      : "w-[90%] sm:w-full sm:max-w-[28rem] rounded-lg border border-white/10 bg-[#111219] p-5 shadow-lg";
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className={dialogClassName}>
+      <DialogContent className={`${dialogClassName} ${(step === "branch" || step === "clients" || step === "rejected" || step === "calendar") ? "[&>button]:hidden" : ""}`}>
         {step !== "calendar" && (
           <DialogHeader>
             <DialogTitle
@@ -114,15 +115,11 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
               {step === "clients" && "¿Cuántos clientes activos manejas actualmente?"}
               {step === "rejected" && "Lo sentimos aún no podemos trabajar juntos"}
             </DialogTitle>
-            {/* Renderiza el botón de cerrar sólo si no estamos en 'calendar' */}
-            <DialogClose asChild>
-              <button className="sr-only">Cerrar</button>
-            </DialogClose>
           </DialogHeader>
         )}
 
         {step === "branch" && (
-          <div className="space-y-5">
+          <div className="flex flex-col space-y-5">
             <input
               type="text"
               value={branch}
@@ -131,7 +128,7 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
                 setInvalidBranch(false);
               }}
               placeholder="Ej. Derecho Civil, Penal, Laboral..."
-              className={`w-full rounded-[28px] border bg-[#0f1117] px-4 py-4 text-white outline-none transition ${
+              className={`w-full rounded-lg border bg-[#0f1117] px-4 py-4 text-white outline-none transition ${
                 invalidBranch
                   ? "border-red-500 ring-2 ring-red-500/30"
                   : "border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20"
@@ -139,51 +136,52 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
             />
             <button
               onClick={handleNextBranch}
-              className="w-full rounded-full bg-[#7c3aff] px-6 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:brightness-110"
+              className="self-end rounded-md bg-gradient-to-r from-[#7800ff] to-[#3a00bf] px-6 py-3 text-sm font-bold tracking-wide text-white transition hover:brightness-110 flex items-center gap-2"
             >
-              Siguiente →
+              Siguiente
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
         )}
 
         {step === "clients" && (
           <div className="space-y-5">
-            <div className="relative">
-              <select
-                value={clients}
-                onChange={(event) => {
-                  setClients(event.target.value as ClientOption);
-                  setInvalidClients(false);
-                }}
-                className={`w-full appearance-none rounded-[28px] border bg-[#0f1117] px-4 py-4 pr-12 text-white outline-none transition ${
-                  invalidClients
-                    ? "border-red-500 ring-2 ring-red-500/30"
-                    : "border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20"
-                }`}
-              >
-                <option value="" disabled>
-                  Selecciona una opción
-                </option>
+            <Select
+              value={clients}
+              onValueChange={(value) => {
+                setClients(value as ClientOption);
+                setInvalidClients(false);
+              }}
+            >
+              <SelectTrigger className={`w-full rounded-lg border bg-[#0f1117] px-4 py-4 text-white outline-none transition ${
+                invalidClients
+                  ? "border-red-500 ring-2 ring-red-500/30"
+                  : "border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20"
+              }`}>
+                <SelectValue placeholder="Selecciona una opción" />
+              </SelectTrigger>
+              <SelectContent className="bg-[#111219] border-white/10">
                 {clientOptions.map((option) => (
-                  <option key={option.value} value={option.value} className="bg-[#111219] text-white">
+                  <SelectItem key={option.value} value={option.value} className="text-white focus:bg-white/10">
                     {option.label}
-                  </option>
+                  </SelectItem>
                 ))}
-              </select>
-              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/60">▾</span>
-            </div>
-            <div className="flex gap-3">
+              </SelectContent>
+            </Select>
+            <div className="flex gap-12">
               <button
                 onClick={() => setStep("branch")}
-                className="flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white transition hover:border-primary"
+                className="flex-1 rounded-md border border-white/10 bg-white/5 px-5 py-3 text-sm text-white transition hover:border-primary flex items-center justify-center gap-2"
               >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 Atrás
               </button>
               <button
                 onClick={handleNextClients}
-                className="flex-1 rounded-full bg-[#7c3aff] px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:brightness-110"
+                className="flex-1 rounded-md bg-gradient-to-r from-[#7800ff] to-[#3a00bf] px-5 py-3 text-sm font-bold tracking-wide text-white transition hover:brightness-110 flex items-center justify-center gap-2"
               >
-                Siguiente →
+                Siguiente
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </button>
             </div>
           </div>
@@ -191,20 +189,17 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
 
         {step === "rejected" && (
           <div className="space-y-5 text-center">
-            <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-3xl bg-[#111219] border border-white/10">
-              <img src="/icons/404.png" alt="404" className="h-20 w-20 object-contain" />
+            <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-lg bg-[#111219] border border-white/10">
+              <img src="/icons/404.png" alt="404"/>
             </div>
-            <p className="text-lg font-semibold text-foreground">
-              Lo sentimos aún no podemos trabajar juntos
-            </p>
-            <Button variant="outline" onClick={() => handleClose(false)} className="w-full">
+            <Button variant="outline" onClick={() => handleClose(false)} className=" text-sm font-bold bg-gradient-to-r from-[#7800ff] to-[#3a00bf] w-[150px] transition hover:brightness-110">
               OK
             </Button>
           </div>
         )}
 
         {step === "calendar" && (
-          <div className="h-[94vh] w-full overflow-hidden bg-transparent">
+          <div className="h-[94vh] w-full overflow-auto bg-transparent">
             <div
               ref={calendarRef}
               className="calendly-widget-wrapper h-full w-full bg-transparent"

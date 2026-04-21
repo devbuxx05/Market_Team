@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/ScrollReveal";
 import FaqAccordion from "@/components/FaqAccordion";
 import ScrollToTop from "@/components/ScrollToTop";
+import CalendlyWidget from "@/components/CalendlyWidget";
 
 const clientes = [
   {
