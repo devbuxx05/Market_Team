@@ -90,6 +90,11 @@ const VslPlayer = () => {
       video.volume = 1;
       video.play();
       setProgress(0);
+    } else {
+      // Si ya ha iniciado, pausar y mostrar alerta
+      video.pause();
+      setIsPaused(true);
+      setShowReturnAlert(true);
     }
   }, [hasClicked]);
 
@@ -190,12 +195,12 @@ const VslPlayer = () => {
           </div>
 
           {/* Botones - SIEMPRE EN FILA (flex-row) */}
-          <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 w-full max-w-[340px] sm:max-w-md mb-auto sm:mb-0">
+          <div className="flex flex-row items-center justify-center gap-1.5 sm:gap-4 w-full max-w-[340px] sm:max-w-md mb-auto sm:mb-0">
             
             {/* Botón Continuar */}
             <button
               onClick={(e) => { e.stopPropagation(); handleContinue(); }}
-              className="flex flex-1 items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-2 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
+              className="flex w-fit items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-5 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
             >
               <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] sm:border-2 border-white">
                 <Play className="h-2 w-2 sm:h-3 sm:w-3 fill-white" />
@@ -207,7 +212,7 @@ const VslPlayer = () => {
             {/* Botón Reiniciar */}
             <button
               onClick={(e) => { e.stopPropagation(); handleRestart(); }}
-              className="flex flex-1 items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-2 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
+              className="flex w-fit items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-5 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
             >
               <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] sm:border-2 border-white">
                 <RotateCcw className="h-2 w-2 sm:h-3 sm:w-3" />
@@ -218,16 +223,6 @@ const VslPlayer = () => {
 
           </div>
         </div>
-      )}
-
-      {/* Botón pause */}
-      {hasClicked && !showReturnAlert && (
-        <button
-          onClick={togglePause}
-          className="absolute bottom-4 left-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition-opacity hover:bg-black/80"
-        >
-          {isPaused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
-        </button>
       )}
 
       {/* Barra de progreso */}

@@ -75,7 +75,7 @@ const Index = () => {
           </ScrollReveal>
 
           {/* Video */}
-          <ScrollReveal delay={200} className="mt-10 sm:mt-5 w-full max-w-2xl">
+          <ScrollReveal delay={200} className="mt-10 sm:mt-5 w-full max-w-3xl">
             <VslPlayer />
           </ScrollReveal>
 
@@ -296,7 +296,7 @@ const Index = () => {
         <footer className="border-t border-border px-4 py-8">
           <div className="text-center">
             <p className="text-sm text-muted-foreground" style={{ fontFamily: "'Hind', sans-serif" }}>
-              © Copyright {new Date().getFullYear()}
+              Este sitio no forma parte del sitio web de Facebook ni de Meta Platforms, Inc. y no está respaldado por ellos de ninguna manera. Facebook es una marca registrada de Meta Platforms, Inc. {new Date().getFullYear()}
             </p>
           </div>
         </footer>
