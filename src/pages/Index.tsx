@@ -11,12 +11,12 @@ const clientes = [
   {
     name: "Nick Name",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
-    videoId: "YmThOnFXM0E",
+    videoId: "1-2eyS0k-IA",
   },
   {
     name: "Nick Name",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
-    videoId: "-0hWmeWqZWs",
+    videoId: "TixlT7lTWMQ",
   },
 ];
 
@@ -108,7 +108,7 @@ const Index = () => {
         <section id="clientes" className="px-4 py-24">
           <div className="mx-auto max-w-5xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide">
+              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide uppercase">
                 Clientes
               </h2>
             </ScrollReveal>
@@ -143,7 +143,7 @@ const Index = () => {
         <section id="metodo" className="px-4 py-24">
           <div className="mx-auto max-w-4xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide">
+              <h2 className="gradient-title mb-16 text-center text-5xl sm:text-6xl tracking-wide uppercase">
                 Método
               </h2>
             </ScrollReveal>
@@ -157,7 +157,7 @@ const Index = () => {
                     Agencias Estiércol
                   </h3>
                   {/* Reduje a p-4 en móvil para que quede más ajustado */}
-                  <div className="rounded-[2rem] p-4 md:p-8 shadow-lg" style={{ backgroundColor: '#333547' }}>
+                  <div className="rounded-[1.3rem] px-7 py-7 md:px-10 md:py-10 shadow-lg" style={{ backgroundColor: '#333547' }}>
                     <div className="mb-4 md:mb-6 flex justify-center">
                       <img
                         src="/icons/tarjeta.png"
@@ -187,13 +187,13 @@ const Index = () => {
 
               {/* Tarjeta 2: Market Team Agency */}
               <ScrollReveal delay={200} direction="right">
-                <div className="flex flex-col gap-3 mx-auto w-full max-w-[300px] md:max-w-sm">
+                <div className="flex flex-col gap-3 mx-auto w-full max-w-[350px] md:max-w-md">
                   <h3 className="text-3xl md:text-4xl text-center tracking-tight text-white">
                     Market Team Agency
                   </h3>
                   {/* Reduje a p-4 en móvil para que quede más ajustado */}
                   <div
-                    className="rounded-[2rem] p-4 md:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(74,0,255,0.4)]"
+                    className="rounded-[1.3rem] px-7 py-7 md:px-10 md:py-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(74,0,255,0.4)]"
                     style={{ backgroundColor: '#4a00ff' }}
                   >
                     <div className="mb-4 md:mb-6 flex justify-center">
@@ -206,10 +206,10 @@ const Index = () => {
                     {/* CAMBIO AQUÍ: text-xs en lugar de text-sm */}
                     <ul className="space-y-2 md:space-y-3 text-base md:text-xl text-white" style={{ fontFamily: "'Hind', sans-serif" }}>
                       {[
-                        <>Implementamos un sistema que genera <span className="font-bold md:text-2xl">clientes constantes</span></>,
+                        <>Implementamos un sistema que genera <span className="font-semibold md:text-xl">clientes constantes</span></>,
                         "Nos enfocamos en conversión y rentabilidad real",
-                        <>Trabajamos con metodologías <span className="font-bold md:text-2xl">TRACK + PAE + Troyanos</span></>,
-                        <>Construimos un sistema que <span className="font-bold md:text-2xl">No depende de ti</span></>,
+                        <>Trabajamos con metodologías <span className="font-semibold md:text-xl">TRACK + PAE + Troyanos</span></>,
+                        <>Construimos un sistema que <span className="font-semibold md:text-xl">No depende de ti</span></>,
                         "Equipo interno optimizado para un rendimiento real",
                         "Trabajamos gratis hasta lograr el resultado"
                       ].map((item, i) => (
@@ -233,7 +233,7 @@ const Index = () => {
           {/* Título */}
           <div className="mx-auto max-w-3xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl tracking-widest">
+              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl tracking-widest uppercase">
                 Track
               </h2>
             </ScrollReveal>
@@ -258,7 +258,7 @@ const Index = () => {
         <section id="faq" className="px-4 py-24">
           <div className="mx-auto max-w-2xl">
             <ScrollReveal>
-              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl tracking-wide">
+              <h2 className="gradient-title mb-12 text-center text-5xl sm:text-6xl tracking-wide uppercase">
                 Preguntas Frecuentes
               </h2>
             </ScrollReveal>

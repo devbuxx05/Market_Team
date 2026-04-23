@@ -100,7 +100,10 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
   const dialogClassName =
   step === "calendar"
     ? "fixed left-[50%] top-[50%] z-50 w-[96vw] max-w-[1240px] max-h-[96vh] translate-x-[-50%] translate-y-[-50%] rounded-xl p-0 shadow-none overflow-hidden calendly-dialog-dark"
-    : "w-[90%] sm:w-full sm:max-w-[28rem] rounded-lg border border-white/10 bg-[#111219] p-5 shadow-lg";
+    : "w-[94%] sm:w-full sm:max-w-[28rem] rounded-lg border border-white/10 bg-[#111219] p-5 shadow-lg " + 
+      "fixed left-[50%] translate-x-[-50%] " +
+      // En móvil: lo fijamos arriba con un margen para que no lo tape el teclado
+      "top-[45%] sm:top-[50%] sm:translate-y-[-50%]";
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>

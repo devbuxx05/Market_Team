@@ -177,10 +177,10 @@ const VslPlayer = () => {
           
           {/* Mensaje persuasivo */}
           <div className="flex flex-col gap-1 sm:gap-2 text-center mt-auto sm:mt-0">
-            <p className="font-anton text-white text-base sm:text-3xl leading-tight">
+            <p className="font-anton text-white text-base sm:text-3xl leading-tight font-medium">
               Si pausaste aquí recuerda que...
             </p>
-            <p className="font-hind text-white/85 text-[10px] sm:text-base max-w-[280px] mx-auto leading-snug sm:leading-relaxed text-center">
+            <p className="font-hind text-white/85 text-[10px] sm:text-base max-w-[340px] mx-auto leading-snug sm:leading-relaxed text-center">
               No hay viento favorable para el que no sabe a donde va
             </p>
           </div>
