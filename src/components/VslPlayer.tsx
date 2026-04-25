@@ -54,29 +54,7 @@ const VslPlayer = () => {
     };
   }, [hasClicked]);
 
-  // Observer: pausa al salir, muestra alerta encima del video
-    useEffect(() => {
-      if (!hasClicked) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          const video = videoRef.current;
-          if (!video) return;
-
-          // Solo salta si sale de la pantalla Y el video se estaba reproduciendo
-          if (!entry.isIntersecting && !video.paused) {
-            video.pause();
-            setIsPaused(true);
-            setShowReturnAlert(true);
-          }
-          // ELIMINAMOS EL ELSE: La alerta solo se cierra si dan clic a los botones
-        },
-        { threshold: 0.2 }
-      );
-
-      if (containerRef.current) observer.observe(containerRef.current);
-      return () => observer.disconnect();
-    }, [hasClicked]);
+  // Observer eliminado: el video se sigue reproduciendo aunque el usuario baje la página
 
   const handleClick = useCallback(() => {
     const video = videoRef.current;
@@ -90,12 +68,9 @@ const VslPlayer = () => {
       video.volume = 1;
       video.play();
       setProgress(0);
-    } else {
-      // Si ya ha iniciado, pausar y mostrar alerta
-      video.pause();
-      setIsPaused(true);
-      setShowReturnAlert(true);
     }
+    // Ya no pausamos ni mostramos alerta al hacer clic en el video
+    // Solo el botón de pausa hará eso
   }, [hasClicked]);
 
   const togglePause = useCallback((e: React.MouseEvent) => {
@@ -173,7 +148,10 @@ const VslPlayer = () => {
 
       {/* Alerta de regreso — ocupa todo el video */}
       {showReturnAlert && (
-        <div className="absolute inset-0 z-40 flex flex-col items-center justify-center gap-2 sm:gap-5 px-3 sm:px-8 text-center bg-[rgba(74,0,255,0.97)] overflow-y-auto py-2">
+        <div 
+          className="absolute inset-0 z-40 flex flex-col items-center justify-center gap-2 sm:gap-5 px-3 sm:px-8 text-center bg-[rgba(74,0,255,0.97)] overflow-y-auto py-2 cursor-pointer"
+          onClick={(e) => { e.stopPropagation(); handleContinue(); }}
+        >
           
           {/* Mensaje persuasivo */}
           <div className="flex flex-col gap-1 sm:gap-2 text-center mt-auto sm:mt-0">
@@ -227,7 +205,7 @@ const VslPlayer = () => {
 
       {/* Barra de progreso */}
       {hasClicked && !showReturnAlert && (
-        <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/60 z-30">
+        <div className="absolute bottom-0 left-0 right-0 h-2 bg-black/60 z-30">
           <div
             className="h-full transition-all duration-300 ease-linear"
             style={{
@@ -236,6 +214,24 @@ const VslPlayer = () => {
             }}
           />
         </div>
+      )}
+
+      {/* Botón de pausa - esquina inferior izquierda */}
+      {hasClicked && !showReturnAlert && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            const video = videoRef.current;
+            if (video) {
+              video.pause();
+              setIsPaused(true);
+              setShowReturnAlert(true);
+            }
+          }}
+          className="absolute bottom-2 left-2 z-40 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black/70 text-white transition-all hover:bg-black/90"
+        >
+          <Pause className="h-4 w-4 sm:h-5 sm:w-5" />
+        </button>
       )}
     </div>
   );

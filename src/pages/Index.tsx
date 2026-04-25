@@ -59,15 +59,12 @@ const Index = () => {
                 </span>
               </h1>
 
-              <p className="mx-auto max-w-2xl font-bold text-sm sm:text-lg text-muted-foreground leading-snug sm:leading-none">
+              <p className="mx-auto max-w-2xl text-sm sm:text-lg text-muted-foreground leading-snug sm:leading-none">
                 <span className="block -mb-0 sm:-mb-1">
-                  Implementamos un sistema de adquisición que te lleva a
-                </span>
-                <span className="block text-foreground text-base sm:text-xl -mb-0 sm:-mb-1">
-                  facturar entre 20K – 50K en 5 meses
+                  Implementamos un sistema para <span className="font-semibold text-foreground text-base sm:text-xl">generar clientes constantes</span>
                 </span>
                 <span className="block">
-                  (o trabajamos gratis hasta lograrlo)
+                  y escalar tus resultados
                 </span>
               </p>
 
@@ -270,11 +267,11 @@ const Index = () => {
             {/* CTA debajo del FAQ */}
             <ScrollReveal delay={300}>
               <div className="mt-16 text-center">
-                <p className="mx-auto mb-8 max-w-xl text-base sm:text-xl text-white font-hind">
+                <p className="mx-auto mb-8 max-w-xl text-base sm:text-xl text-white font-hind font-light">
                   <span>
                     No necesitas más contenido, más herramientas o más personas.
                   </span>{" "}
-                    Necesitas entender por qué todo eso no te está dando resultados.
+                    Necesitas entender por qué todo eso <span className="font-semibold">no te está dando resultados</span>.
                 </p>
 
                 <button
