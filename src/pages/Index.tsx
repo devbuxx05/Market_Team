@@ -53,18 +53,18 @@ const Index = () => {
             <div className="mx-auto max-w-3xl space-y-4 sm:space-y-4">
               
               <h1 className="text-2xl sm:text-3xl md:text-4xl leading-snug sm:leading-normal">
-                No necesitas hacer más videitos...{" "}
+                <span className="uppercase">No necesitas hacer más videitos...</span>{" "}
                 <span>
                   Necesitas entender por qué no estás consiguiendo clientes
                 </span>
               </h1>
 
               <p className="mx-auto max-w-2xl text-sm sm:text-lg text-muted-foreground leading-snug sm:leading-none">
-                <span className="block -mb-0 sm:-mb-1">
-                  Implementamos un sistema para <span className="font-semibold text-foreground text-base sm:text-xl">generar clientes constantes</span>
-                </span>
-                <span className="block">
-                  y escalar tus resultados
+                <span className="block -mb-1">
+                  Implementamos un sistema para{" "}
+                  <span className="font-semibold text-foreground text-base sm:text-xl">generar clientes constantes </span>
+                  <span className="hidden sm:block -mt-1">y escalar tus resultados</span>
+                  <span className="sm:hidden">y escalar tus resultados</span>
                 </span>
               </p>
 

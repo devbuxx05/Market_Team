@@ -22,21 +22,14 @@ const VslPlayer = () => {
     };
 
     const onTimeUpdate = () => {
-      if (video.duration > 0 && hasClicked) {
-        savedTimeRef.current = video.currentTime;
-        const actual = video.currentTime / video.duration;
+      const video = videoRef.current;
+      if (!video || !video.duration || video.duration === 0) return;
 
-        let fake: number;
-        if (actual < 0.4) {
-          fake = (actual / 0.4) * 65;
-        } else if (actual < 0.8) {
-          fake = 65 + ((actual - 0.4) / 0.4) * 17;
-        } else {
-          fake = 82 + ((actual - 0.8) / 0.2) * 10;
-        }
+      const realRatio = video.currentTime / video.duration;
+      const k = 100; // ajusta este valor si quieres más o menos agresividad
+      const newProgress = (Math.log(1 + realRatio * k) / Math.log(1 + k)) * 100;
 
-        setProgress(fake);
-      }
+      setProgress(Math.min(newProgress, 100));
     };
 
     const onEnded = () => {
@@ -207,7 +200,7 @@ const VslPlayer = () => {
       {hasClicked && !showReturnAlert && (
         <div className="absolute bottom-0 left-0 right-0 h-2 bg-black/60 z-30">
           <div
-            className="h-full transition-all duration-300 ease-linear"
+            className="h-full transition-all duration-75 ease-out" // Bajamos a 75ms para que sea más responsivo
             style={{
               width: `${progress}%`,
               background: "linear-gradient(90deg, #e53e3e, #c53030)",
@@ -220,14 +213,15 @@ const VslPlayer = () => {
       {hasClicked && !showReturnAlert && (
         <button
           onClick={(e) => {
-            e.stopPropagation();
-            const video = videoRef.current;
-            if (video) {
-              video.pause();
-              setIsPaused(true);
-              setShowReturnAlert(true);
-            }
-          }}
+  e.stopPropagation();
+  const video = videoRef.current;
+  if (video) {
+    savedTimeRef.current = video.currentTime; // ✅ guarda el tiempo
+    video.pause();
+    setIsPaused(true);
+    setShowReturnAlert(true);
+  }
+}}
           className="absolute bottom-2 left-2 z-40 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black/70 text-white transition-all hover:bg-black/90"
         >
           <Pause className="h-4 w-4 sm:h-5 sm:w-5" />
