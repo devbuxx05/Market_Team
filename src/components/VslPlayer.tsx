@@ -120,7 +120,7 @@ const VslPlayer = () => {
         <video
           ref={videoRef}
           className="w-full h-full object-cover"
-          src="/sample-vsl.mp4"
+          src="/videos/vsl-market.mp4"
           muted
           playsInline
           preload="auto"
