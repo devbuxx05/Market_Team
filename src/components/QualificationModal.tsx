@@ -193,7 +193,7 @@ const QualificationModal = ({ open, onOpenChange }: Props) => {
         {step === "rejected" && (
           <div className="space-y-5 text-center">
             <div className="mx-auto flex h-28 w-28 items-center justify-center">
-              <img src="/icons/404.png" alt="404"/>
+              <img src="/icons/error.webp" alt="404"/>
             </div>
             <Button variant="outline" onClick={() => handleClose(false)} className=" text-sm font-bold bg-gradient-to-r from-[#7800ff] to-[#3a00bf] w-[150px] transition hover:brightness-110">
               OK

@@ -113,7 +113,7 @@ const VslPlayer = () => {
         <video
           ref={videoRef}
           className="w-full h-full object-cover"
-          src="/videos/vsl-market.mp4"
+          src="/videos/vsl.mov"
           muted
           playsInline
           preload="auto"
@@ -159,9 +159,9 @@ const VslPlayer = () => {
           {/* Ícono central */}
           <div className="my-0.5 sm:my-2 shrink-0">
             <img
-              src="/icons/avion.png"
+              src="/icons/avion.webp"
               alt="sigue adelante"
-              className="h-8 sm:h-20 w-auto opacity-90 invert"
+              className="h-8 sm:h-20 w-auto"
             />
           </div>
 

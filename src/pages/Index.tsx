@@ -157,7 +157,7 @@ const Index = () => {
                   <div className="rounded-[1.3rem] px-7 py-7 md:px-10 md:py-10 shadow-lg" style={{ backgroundColor: '#333547' }}>
                     <div className="mb-4 md:mb-6 flex justify-center">
                       <img
-                        src="/icons/tarjeta.png"
+                        src="/icons/agencia-popo.webp"
                         alt="Logo A"
                         className="w-14 md:w-20 h-auto drop-shadow-md"
                       />
@@ -195,9 +195,9 @@ const Index = () => {
                   >
                     <div className="mb-4 md:mb-6 flex justify-center">
                       <img
-                        src="/icons/logo.png"
+                        src="/icons/market-sin-fondo.webp"
                         alt="Logo Market Team Agency"
-                        className="w-14 md:w-20 h-auto drop-shadow-md"
+                        className="w-24 md:w-28 h-auto drop-shadow-md"
                       />
                     </div>
                     {/* CAMBIO AQUÍ: text-xs en lugar de text-sm */}
@@ -242,13 +242,13 @@ const Index = () => {
               
               {/* Mobile image */}
               <img
-                src="/icons/track-movil.png"
+                src="/icons/track-movil.webp"
                 alt="Sistema Track"
                 className="w-full h-auto object-contain drop-shadow-[0_0_60px_rgba(74,0,255,0.3)] md:hidden"
               />
               {/* Desktop image */}
               <img
-                src="/icons/track.png"
+                src="/icons/track-pc.webp"
                 alt="Sistema Track"
                 className="w-full h-auto object-contain drop-shadow-[0_0_60px_rgba(74,0,255,0.3)] hidden md:block"
               />
@@ -295,22 +295,31 @@ const Index = () => {
             </ScrollReveal>
           </div>
         </section>
+        
 
         {/* Footer */}
-        <footer className="border-t border-border px-4 py-8">
-          <div className="text-center">
-            <p className="text-sm text-muted-foreground" style={{ fontFamily: "'Hind', sans-serif" }}>
-              Este sitio no forma parte del sitio web de Facebook ni de Meta Platforms, Inc. y no está respaldado por ellos de ninguna manera. Facebook es una marca registrada de Meta Platforms, Inc. {new Date().getFullYear()}
+        <footer className="border-t border-border px-4 py-4">
+          <div className="text-center space-y-0">
+            <p className="text-xs md:text-sm text-muted-foreground" style={{ fontFamily: "'Hind', sans-serif" }}>
+            Este sitio no forma parte del sitio web de Facebook ni de Meta Platforms, Inc. y no está respaldado por ellos de ninguna manera. Facebook es una marca registrada de Meta Platforms, Inc. {new Date().getFullYear()}
+            </p>
+
+            {/* Solo el logo tipográfico, sin el span duplicado */}
+            <div className="flex items-center justify-center">
+              <img src="/icons/tipografia-market.webp" alt="Market Team Agency" className="h-32 w-auto" />
+            </div>
+
+            <p className="text-white text-sm font-bold">
+              {new Date().getFullYear()} © Todos los derechos reservados
             </p>
           </div>
         </footer>
-      </div>
 
-      <QualificationModal open={modalOpen} onOpenChange={setModalOpen} />
-      
-      <ScrollToTop />
-      
-    </div>
+        <QualificationModal open={modalOpen} onOpenChange={setModalOpen} />
+        <ScrollToTop />
+        
+      </div> {/* Cierra el div de z-10 */}
+    </div> /* NUEVO: Cierra el div principal (min-h-screen) */
   );
 };
 
