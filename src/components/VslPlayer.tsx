@@ -113,12 +113,14 @@ const VslPlayer = () => {
         <video
           ref={videoRef}
           className="w-full h-full object-cover"
-          src="/videos/vsl.mov"
           muted
           playsInline
           preload="auto"
           loop
-        />
+        >
+          <source src="/videos/vsl-market.mp4" type="video/mp4" />
+          {/* Agregando la etiqueta source con el type ayuda al navegador a identificar el códec */}
+        </video>
       </div>
 
       {/* Alerta inicial: haz clic para escuchar */}
