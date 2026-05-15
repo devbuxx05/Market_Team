@@ -9,9 +9,15 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const clientes = [
   {
-    name: "Nick Name",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
-    videoId: "1-2eyS0k-IA",
+    name: "Dr. Martín Cuéllar",
+    text: (
+      <>
+        Antes de trabajar con nosotros, el Dr. Martín Cuellar enfrentaba un gran reto: competir digitalmente sin una estrategia clara de marketing.
+        <br />
+        Hoy, gracias a un trabajo colaborativo y una comunicación constante, está construyendo una presencia digital sólida y con identidad propia.
+      </>
+    ),
+    videoId: "91Ll3TJ1sVY",
   },
   {
     name: "Nick Name",
@@ -126,7 +132,7 @@ const Index = () => {
                       />
                     </div>
                     <div className="w-full sm:w-2/5 space-y-2">
-                      <h3 className="text-base font-extrabold uppercase tracking-wide">{c.name}</h3>
+                      <h3 className="text-base font-ligth uppercase tracking-wide">{c.name}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: "'Hind', sans-serif" }}>{c.text}</p>
                     </div>
                   </div>
@@ -306,7 +312,7 @@ const Index = () => {
 
             {/* Solo el logo tipográfico, sin el span duplicado */}
             <div className="flex items-center justify-center">
-              <img src="/icons/tipografia-market.webp" alt="Market Team Agency" className="h-32 w-auto" />
+              <img src="/icons/market-sin-fondo.webp" alt="Market Team Agency" className="h-32 w-auto" />
             </div>
 
             <p className="text-white text-sm font-bold">
