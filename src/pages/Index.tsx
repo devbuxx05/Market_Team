@@ -19,29 +19,28 @@ const clientes = [
     ),
     videoId: "91Ll3TJ1sVY",
   },
-  {
-    name: "Nick Name",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non justo vel lacus viverra placerat.",
-    videoId: "TixlT7lTWMQ",
-  },
 ];
 
 const faqs = [
   {
     q: "¿Esto funciona para mi tipo de negocio?",
-    a: <>Trabajamos con negocios B2B, expertos y marcas personales que ya tienen conocimiento y buscan convertirlo en clientes. <br /> Si ya tienes algo validado pero no logras escalar, es donde más impacto generamos.</>,
+    a: <>Trabajamos con negocios B2B, expertos y marcas jurídicas que ya tienen conocimiento y buscan convertirlo en clientes. Si ya tienes algo validado pero no logras escalar, es donde más impacto generamos.</>,
+  },
+  {
+    q: "¿Cuánto tiempo toma ver resultados?",
+    a: <>El sistema está diseñado para generar resultados progresivos desde las primeras semanas, con un objetivo claro, de escalar en un periodo aproximado de 5 meses.</>,
   },
   {
     q: "¿Necesito tener experiencia creando contenido o vendiendo?",
-    a: "No. Nosotros nos encargamos de toda la estrategia, creación de contenido y gestión de campañas. Tú solo te enfocas en atender a tus nuevos clientes.",
+    a: <>No. El sistema está diseñado para guiarte en cada parte del proceso, desde cómo comunicar hasta cómo convertir. No necesitas experiencia, necesitas nuestra estructura.</>,
   },
   {
     q: "¿Qué pasa si no obtengo resultados?",
-    a: "Trabajamos gratis hasta lograr el resultado. Tenemos un track record comprobado y evaluamos tu caso antes de comenzar.",
+    a: <>Si no alcanzamos los objetivos definidos, seguimos trabajando contigo sin costo adicional hasta lograrlos. El riesgo no es tuyo, es nuestro.</>,
   },
   {
     q: "¿Qué necesito para empezar?",
-    a: "Solo necesitas agendar tu consultoría gratuita. Ahí analizaremos tu caso y te diremos exactamente qué necesitas.",
+    a: <>Tener claridad en lo que ofreces, disposición para ejecutar y compromiso con el proceso. No trabajamos con todos, solo con quienes realmente quieren construir algo escalable.</>,
   },
 ];
 
@@ -132,8 +131,8 @@ const Index = () => {
                       />
                     </div>
                     <div className="w-full sm:w-2/5 space-y-2">
-                      <h3 className="text-base font-ligth uppercase tracking-wide">{c.name}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: "'Hind', sans-serif" }}>{c.text}</p>
+                      <h3 className="text-lg sm:text-xl font-ligth uppercase tracking-wide">{c.name}</h3>
+                      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" style={{ fontFamily: "'Hind', sans-serif" }}>{c.text}</p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -315,7 +314,7 @@ const Index = () => {
               <img src="/icons/market-sin-fondo.webp" alt="Market Team Agency" className="h-32 w-auto" />
             </div>
 
-            <p className="text-white text-sm font-bold">
+            <p className="text-white text-sm font-light">
               {new Date().getFullYear()} © Todos los derechos reservados
             </p>
           </div>

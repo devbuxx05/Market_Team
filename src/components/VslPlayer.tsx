@@ -171,28 +171,28 @@ const VslPlayer = () => {
           <div className="flex flex-row items-center justify-center gap-1.5 sm:gap-4 w-full max-w-[340px] sm:max-w-md mb-auto sm:mb-0">
             
             {/* Botón Continuar */}
-            <button
-              onClick={(e) => { e.stopPropagation(); handleContinue(); }}
-              className="flex w-fit items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-5 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
-            >
-              <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] sm:border-2 border-white">
-                <Play className="h-2 w-2 sm:h-3 sm:w-3 fill-white" />
-              </div>
-              <span className="leading-none sm:hidden">Continuar</span>
-              <span className="leading-none hidden sm:inline">Continuar viendo</span>
-            </button>
+<button
+  onClick={(e) => { e.stopPropagation(); handleContinue(); }}
+  className="flex w-fit items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full border sm:border-2 border-white px-5 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
+>
+  <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border sm:border-2 border-white">
+    <Play className="h-2 w-2 sm:h-3 sm:w-3 fill-white" />
+  </div>
+  <span className="leading-none sm:hidden">Continuar</span>
+  <span className="leading-none hidden sm:inline">Continuar viendo</span>
+</button>
 
-            {/* Botón Reiniciar */}
-            <button
-              onClick={(e) => { e.stopPropagation(); handleRestart(); }}
-              className="flex w-fit items-center justify-center gap-1.5 sm:gap-2 rounded-full border-2 border-white px-5 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
-            >
-              <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border-[1.5px] sm:border-2 border-white">
-                <RotateCcw className="h-2 w-2 sm:h-3 sm:w-3" />
-              </div>
-              <span className="leading-none sm:hidden">Reiniciar</span>
-              <span className="leading-none hidden sm:inline">Comenzar de nuevo</span>
-            </button>
+{/* Botón Reiniciar */}
+<button
+  onClick={(e) => { e.stopPropagation(); handleRestart(); }}
+  className="flex w-fit items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-full border sm:border-2 border-white px-5 py-1.5 sm:px-5 sm:py-3 text-[10px] sm:text-sm font-bold text-white transition-all hover:bg-white hover:text-[#4a00ff]"
+>
+  <div className="flex h-4 w-4 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border sm:border-2 border-white">
+    <RotateCcw className="h-2 w-2 sm:h-3 sm:w-3" />
+  </div>
+  <span className="leading-none sm:hidden">Reiniciar</span>
+  <span className="leading-none hidden sm:inline">Comenzar de nuevo</span>
+</button>
 
           </div>
         </div>
