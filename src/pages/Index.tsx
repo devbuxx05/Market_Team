@@ -247,13 +247,13 @@ const Index = () => {
               
               {/* Mobile image */}
               <img
-                src="/icons/track-movil.webp"
+                src="/icons/track-movil.png"
                 alt="Sistema Track"
                 className="w-full h-auto object-contain drop-shadow-[0_0_60px_rgba(74,0,255,0.3)] md:hidden"
               />
               {/* Desktop image */}
               <img
-                src="/icons/track-pc.webp"
+                src="/icons/track-pc.png"
                 alt="Sistema Track"
                 className="w-full h-auto object-contain drop-shadow-[0_0_60px_rgba(74,0,255,0.3)] hidden md:block"
               />
