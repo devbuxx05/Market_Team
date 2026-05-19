@@ -9,13 +9,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+    function loadScript(a){
+      var b=document.getElementsByTagName("head")[0],
+          c=document.createElement("script");
+      c.type="text/javascript";
+      c.src="https://tracker.metricool.com/resources/be.js";
+      c.onreadystatechange=a;
+      c.onload=a;
+      b.appendChild(c);
+    }
+    loadScript(function(){
+      beTracker.t({hash:"22eb8ba7e97a4376d8232f2c8a4e9451"});
+    });
+  </script>
   </head>
   <body>
     <div id="root"></div>
     <!-- Inicio de Calendly con la barra de info-->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     <!-- Final del widget integrado de Calendly -->
-    <script type="module" src="/src/main.tsx"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
