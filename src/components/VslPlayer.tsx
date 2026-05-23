@@ -11,52 +11,11 @@ const VslPlayer = () => {
   const [hasClicked, setHasClicked] = useState(false);
   const [showReturnAlert, setShowReturnAlert] = useState(false);
   const savedTimeRef = useRef(0);
-  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (isMobile) {
-      let unlocked = false;
 
-      const unlock = () => {
-        if (unlocked) return;
-        unlocked = true;
-
-        video.muted = false;
-        video.volume = 1;
-        video.currentTime = 0;
-        video.play()
-          .then(() => {
-            setShowAlert(false);
-            setHasClicked(true);
-          })
-          .catch(() => {
-            // iOS bloqueó el audio — arranca muteado y muestra alerta para tap
-            video.muted = true;
-            video.play().catch(() => {});
-            setShowAlert(true); // el usuario toca la alerta y activa audio
-          });
-
-        document.removeEventListener('scroll', unlock);
-        document.removeEventListener('touchstart', unlock);
-        clearTimeout(timer);
-      };
-
-      // Android: scroll cuenta como gesto
-      document.addEventListener('scroll', unlock, { once: true });
-
-      // iOS: touchstart cuenta como gesto
-      document.addEventListener('touchstart', unlock, { once: true });
-
-      // Fallback: 3 segundos sin interacción
-      const timer = setTimeout(unlock, 1000);
-
-      return () => {
-        document.removeEventListener('scroll', unlock);
-        document.removeEventListener('touchstart', unlock);
-        clearTimeout(timer);
-      };
-    }
     const onCanPlay = () => {
       setIsReady(true);
       video.play().catch(() => {});
@@ -165,7 +124,7 @@ const VslPlayer = () => {
       </div>
 
       {/* Alerta inicial: haz clic para escuchar */}
-      {showAlert && isReady && !isMobile && (
+      {showAlert && isReady && (
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div
             className="flex flex-col items-center gap-2 rounded-xl px-8 py-5 animate-pulse"
