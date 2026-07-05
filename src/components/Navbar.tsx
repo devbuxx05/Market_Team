@@ -14,7 +14,7 @@ const Navbar = ({ onCtaClick }: NavbarProps) => {
   }, []);
 
   return (
-      <nav className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[80%] max-w-[500px] transition-all duration-500 rounded-full border ${
+      <nav className={`hidden sm:block fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-[80%] max-w-[500px] transition-all duration-500 rounded-full border ${
         scrolled
           ? "bg-white/5 backdrop-blur-md shadow-[0_4px_24px_rgba(74,0,255,0.15)] border-white/10 py-2.5 px-4 sm:px-6"
           : "bg-transparent border-transparent py-4 px-4 sm:px-6"
